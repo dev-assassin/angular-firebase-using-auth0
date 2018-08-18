@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CallbackComponent } from './callback.component';
 import { LoadingComponent } from './core/loading.component';
+import { ErrorComponent } from './core/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CallbackComponent,
-    LoadingComponent
+    LoadingComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -18,6 +20,6 @@ import { LoadingComponent } from './core/loading.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [LoadingComponent]
+  exports: [LoadingComponent, ErrorComponent]
 })
 export class AppModule { }
