@@ -1,9 +1,26 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
+const FB_PROJECT_ID = 'angular-firebase-auth0-dd3c6';
 
 export const environment = {
-  production: false
+  production: false,
+  auth: {
+    clientId: 'bXc9f7iWt0JYYKKjrxab7leiTTHNho8s',
+    clientDomian: 'ninjadev1030.auth0.com',
+    audience: 'http://localhost:1337/',
+    redirect: 'http://localhost:4200/callback',
+    scope: 'openid profile email'
+  },
+  firebase: {
+    apiKey: 'AIzaSyA9dYpQa3qsiRkh9xu_wplU4eh4joGQw1k',
+    authDomain: `${FB_PROJECT_ID}.firebaseapp.com`,
+    databaseURL: `${FB_PROJECT_ID}.firebaseio.com`,
+    projectId: FB_PROJECT_ID,
+    storageBucket: `${FB_PROJECT_ID}.appspot.com`,
+    messagingSenderId: '447298114268'
+  },
+  apiRoot: 'http://localhost:1337/'
 };
 
 /*
