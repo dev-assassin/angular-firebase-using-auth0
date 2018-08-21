@@ -7,15 +7,11 @@ import { AuthModule } from './auth/auth.module';
 import { CommentsModule } from './comments/comments.module';
 import { AppComponent } from './app.component';
 import { CallbackComponent } from './callback.component';
-import { LoadingComponent } from './core/loading.component';
-import { ErrorComponent } from './core/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CallbackComponent,
-    LoadingComponent,
-    ErrorComponent
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +21,6 @@ import { ErrorComponent } from './core/error.component';
     CommentsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  exports: [LoadingComponent, ErrorComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
