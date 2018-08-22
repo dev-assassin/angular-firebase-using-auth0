@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-callback',
-  templateUrl: './callback.component.html',
-  styleUrls: ['./callback.component.css']
+  template:  `
+    <app-loading></app-loading>
+  `
 })
 export class CallbackComponent implements OnInit {
 
