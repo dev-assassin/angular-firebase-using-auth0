@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
-  templateUrl: `
+  template: `
     <div [ngClass]="{'inline': inline, 'text-center': !inline, 'py-2': !inline}">
-      <img src="/assets/images/loading.svg">
+      <img src="assets/images/loading.svg">
     </div>
   `,
-  styleUrls: [`
+  styles: [`
     .inline {
       display: inline-block;
     }
