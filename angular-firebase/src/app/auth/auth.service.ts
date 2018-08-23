@@ -16,7 +16,7 @@ export class AuthService {
   // Create Auth0 web auth instance
   private _auth0 = new auth0.WebAuth({
     clientID: environment.auth.clientId,
-    domain: environment.auth.clientDomain,
+    domain: environment.auth.clientDomian,
     responseType: 'token',
     redirectUri: environment.auth.redirect,
     audience: environment.auth.audience,

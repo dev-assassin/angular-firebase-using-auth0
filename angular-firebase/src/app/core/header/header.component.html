@@ -1,3 +1,16 @@
-<p>
-  header works!
-</p>
+<nav class="nav justify-content-between mt-2 mx-2 mb-3">
+  <div class="d-flex align-items-center">
+    <strong class="mr-1">
+      <a routerLink="/" class="home-link">Popular Dogs ❤</a>
+    </strong>
+  </div>
+  <div class="ml-3">
+    <small *ngIf="auth.loading" class="loading">
+      Logging in...
+    </small>
+
+    <ng-template [ngIf]="!auth.loading">
+      <button *ngIf="!auth.loggedIn" class="btn btn-primary btn-sm" (click)="auth.login()">Log In</button>
+    </ng-template>
+  </div>
+</nav>
