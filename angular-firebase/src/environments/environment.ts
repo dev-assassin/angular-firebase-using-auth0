@@ -6,8 +6,8 @@ const FB_PROJECT_ID = 'angular-firebase-auth0-dd3c6';
 export const environment = {
   production: false,
   auth: {
-    clientId: 'bXc9f7iWt0JYYKKjrxab7leiTTHNho8s',
-    clientDomian: 'ninjadev1030.auth0.com',
+    clientId: 'YW29iGSU9QlLXCxxBI2UO918rmYIU9Fl',
+    clientDomian: 'uefa.eu.auth0.com',
     audience: 'http://localhost:1337/',
     redirect: 'http://localhost:4200/callback',
     scope: 'openid profile email'
