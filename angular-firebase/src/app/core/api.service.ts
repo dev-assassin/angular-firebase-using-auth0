@@ -18,7 +18,7 @@ export class ApiService {
 
   getDogs$(): Observable<Dog[]> {
     return this.http
-      .get(`${this._API}/dogs`)
+      .get<Dog[]>(`${this._API}/dogs`)
       .pipe(
         catchError((err, caught) => this._onError(err, caught))
       );
@@ -26,7 +26,7 @@ export class ApiService {
 
   getDogByRank$(rank: number): Observable<DogDetail> {
     return this.http
-      .get(`${this._API}/dog/${rank}`, {
+      .get<DogDetail>(`${this._API}/dog/${rank}`, {
         headers: new HttpHeaders().set('Authorization', `Bearer ${this.auth.accessToken}`)
       })
       .pipe(
