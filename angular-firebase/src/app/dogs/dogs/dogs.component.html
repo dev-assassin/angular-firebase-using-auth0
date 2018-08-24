@@ -8,7 +8,7 @@
 <div *ngIf="dogsList$ | async as dogsList; else noDogs">
   <p class="lead">
     These were the top
-    <a href="http://www.akc.org/content/news/articles/the-labrador-retriever-wins-top-breed-for-the-26th-year-in-a-row/">10 most popular dog breeds in the United States in 2016</a>
+    <a href="http://www.akc.org/content/news/articles/the-labrador-retriever-wins-top-breed-for-the-26th-year-in-a-row/" target="_blank">10 most popular dog breeds in the United States in 2016</a>
     , ranked by the American Kennel Club(AKC).
   </p>
   <div class="row mb-3">
@@ -25,3 +25,5 @@
     </div>
   </div>
 </div>
+
+<app-comments></app-comments>
