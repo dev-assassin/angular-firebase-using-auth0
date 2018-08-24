@@ -1,4 +1,4 @@
-<h1 class="text-center">{{pageTitle}}</h1>
+<h1 class="text-center">{{ pageTitle }}</h1>
 
 <ng-template #noDogs>
   <app-loading *ngIf="loading"></app-loading>
@@ -8,15 +8,14 @@
 <div *ngIf="dogsList$ | async as dogsList; else noDogs">
   <p class="lead">
     These were the top
-    <a href="http://www.akc.org/content/news/articles/the-labrador-retriever-wins-top-breed-for-the-26th-year-in-a-row/" target="_blank">10 most popular dog breeds in the United States in 2016</a>
-    , ranked by the American Kennel Club(AKC).
+    <a href="http://www.akc.org/content/news/articles/the-labrador-retriever-wins-top-breed-for-the-26th-year-in-a-row/">10 most popular dog breeds in the United States in 2016</a>, ranked by the American Kennel Club (AKC).
   </p>
   <div class="row mb-3">
     <div *ngFor="let dog of dogsList" class="col-xs-12 col-sm-6 col-md-4">
       <div class="card my-2">
         <img class="card-img-top" [src]="dog.image" [alt]="dog.breed">
         <div class="card-body">
-          <h5 class="card-title">#{{dog.rank}}: {{dog.breed}}</h5>
+          <h5 class="card-title">#{{ dog.rank }}: {{ dog.breed }}</h5>
           <p class="text-right mb-0">
             <a class="btn btn-primary" [routerLink]="['/dog', dog.rank]">Learn more</a>
           </p>
