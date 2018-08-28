@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { AngularFirestoreCollection, AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestoreCollection, AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
+import { catchError, map } from 'rxjs/operators';
+import { Comment } from './../comment';
 
 @Component({
   selector: 'app-comments',
@@ -24,6 +26,51 @@ export class CommentsComponent {
       'comments',
       ref => ref.orderBy('timestamp').limit(15)
     );
+    // Set up onservable of comments
+    this.comments$ = this._commentsCollection.snapshotChanges()
+      .pipe(
+        map(res => this._onNext(res)),
+        catchError((err, caught) => this._onError(err, caught))
+      );
+  }
+
+  private _onNext(res) {
+    this.loading = false;
+    this.error = false;
+    // Add Firestore ID to comments
+    // The ID is necessary to delete specific comments
+    return res.map(action => {
+      const data = action.payload.doc.data() as Comment;
+      const id = action.payload.doc.id;
+      return { id, ...data };
+    });
+  }
+
+  private _onError(err, caught): Observable<any> {
+    this.loading = false;
+    this.error = true;
+    return Observable.throw('An error occurred while retrieving comments');
+  }
+
+  onPostComment(comment: Comment) {
+    // Unwrap the Comment instance to an object for Firebase
+    const commentObj = <Comment>comment.getObj;
+    this._commentsCollection.add(commentObj);
+  }
+
+  canDeleteComment(uid: string): boolean {
+    if (!this.auth.loggedInFirebase || !this.auth.userProfile) {
+      return false;
+    }
+    return uid === this.auth.userProfile.sub;
+  }
+
+  deleteComment(id: string) {
+    // Delete comment with confirmation prompt first
+    if (window.confirm('Are you sure you want to delete your comment?')) {
+      const thisDoc: AngularFirestoreDocument<Comment> = this.afs.doc<Comment>(`comments/${id}`);
+      thisDoc.delete();
+    }
   }
 
 }

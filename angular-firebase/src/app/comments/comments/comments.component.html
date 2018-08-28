@@ -1,3 +1,36 @@
-<p>
-  comments works!
-</p>
+<section class="comments py-3">
+  <h3>Comments</h3>
+
+  <ng-template #noComments>
+    <p class="lead" *ngIf="loading">
+      <app-loading [inline]="true"></app-loading>Loading comments...
+    </p>
+    <app-error *ngIf="error"></app-error>
+  </ng-template>
+
+  <div *ngIf="comments$ | async; let commentsList; else noComments">
+    <ul class="list-unstyled">
+      <li *ngFor="let comment of commentsList" class="pt-2">
+        <div class="row mb-1">
+          <div class="col">
+            <img [src]="comment.picture" class="avatar rounded">
+            <strong style="margin-right: 10px;">{{ comment.user }}</strong>
+            <small class="text-info">{{ comment.timestamp | date: 'short' }}</small>
+            <strong>
+              <a
+                *ngIf="canDeleteComment(comment.uid)"
+                class="text-danger"
+                title="Delete"
+                (click)="deleteComment(comment.id)">&times;</a>
+            </strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <p class="comment-text rounded p-2 my-2" [innerHTML]="comment.text"></p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
