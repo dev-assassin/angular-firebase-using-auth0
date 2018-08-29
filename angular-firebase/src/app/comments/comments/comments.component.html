@@ -14,8 +14,8 @@
         <div class="row mb-1">
           <div class="col">
             <img [src]="comment.picture" class="avatar rounded">
-            <strong style="margin-right: 10px;">{{ comment.user }}</strong>
-            <small class="text-info">{{ comment.timestamp | date: 'short' }}</small>
+            <strong>{{ comment.user }}</strong>
+            <small class="text-info">{{ comment.timestamp | date:'short' }}</small>
             <strong>
               <a
                 *ngIf="canDeleteComment(comment.uid)"
@@ -32,5 +32,15 @@
         </div>
       </li>
     </ul>
+
+    <div *ngIf="auth.loggedInFirebase; else logInToComment">
+      <app-comment-form (postComment)="onPostComment($event)"></app-comment-form>
+    </div>
+
+    <ng-template #logInToComment>
+      <p class="lead" *ngIf="!auth.loggedIn">
+        Please <a class="text-primary" (click)="auth.login()">log in</a> to leave a comment.
+      </p>
+    </ng-template>
   </div>
 </section>
