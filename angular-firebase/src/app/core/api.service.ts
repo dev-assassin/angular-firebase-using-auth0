@@ -34,7 +34,7 @@ export class ApiService {
       );
   }
 
-  private _onError(err, caught) {
+  private _onError(err, _caught) {
     let errorMsg = 'Error: Unable to complete request.';
     if (err instanceof HttpErrorResponse) {
       errorMsg = err.message;
